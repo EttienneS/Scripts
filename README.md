@@ -13,9 +13,9 @@ Just pull the script you want and run!
 
 ## Installation
 
-No install needed but if you want to run the script as a scheduled job at startup you can run:
+No install needed but if you want to run the primary ([go.ps1](./go.ps1)) script as a scheduled job at startup you can run:
 
-```
+``` Powershell
 iex ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/EttienneS/Scripts/master/create-runoncekey.ps1"))
 ```
 
