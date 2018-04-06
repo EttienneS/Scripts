@@ -4,25 +4,16 @@ Scripts for machine configuration.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Just pull the script you want and run!
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-Pull the go.ps1 script and execute.
+Windows Machine
+Powershell 5.0 or greater
 
 ## Authors
 
 * **Ettienne Scharneck** - *Initial work* - [EttienneS](https://github.com/EttienneS)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
