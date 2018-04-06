@@ -5,7 +5,7 @@ $servers = @("sa-build01-v.k2workflow.com",
              "sa-build05-v.k2workflow.com", 
              "sa-build06-v.k2workflow.com")
 
-$folder = "$home\Desktop\Links"
+$folder = "$home\Desktop"
 
 if (!(Test-Path $folder)) 
 {
