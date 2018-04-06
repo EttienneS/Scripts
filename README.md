@@ -16,12 +16,12 @@ Just pull the script you want and run!
 No install needed but if you want to run the primary ([go.ps1](./go.ps1)) script as a scheduled job at startup you can run:
 
 ``` Powershell
-iex ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/EttienneS/Scripts/master/create-runoncekey.ps1"))
+iex ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/EttienneS/Scripts/master/configure-autostart.ps1"))
 ```
 
-This downloads the [create-runoncekey.ps1](./create-runoncekey.ps1) script and executes it.
+This downloads the [configure-autostart.ps1](./configure-autostart.ps1) script and executes it.
 
-create-runoncekey creates a registry key on the machine that will configure the machine to download and excute the latest version of [go.ps1](./go.ps1) on machine startup.
+configure-autostart creates a registry key on the machine that will configure the machine to download and excute the latest version of [go.ps1](./go.ps1) on machine startup.
 
 ## Authors
 
