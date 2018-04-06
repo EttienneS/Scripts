@@ -19,7 +19,9 @@ No install needed but if you want to run the script as a scheduled job at startu
 iex ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/EttienneS/Scripts/master/create-runoncekey.ps1"))
 ```
 
-This creates a registry key on the machine that will fire powershell script when anybody logs on.  The key will tell Windows to download the latest version of [go.ps1](./go.ps1) and execute it.
+This downloads the [create-runoncekey.ps1](./create-runoncekey.ps1) script and executes it.
+
+create-runoncekey creates a registry key on the machine that will configure the machine to download and excute the latest version of [go.ps1](./go.ps1) on machine startup.
 
 ## Authors
 
