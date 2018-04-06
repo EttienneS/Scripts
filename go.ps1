@@ -1,3 +1,5 @@
+Set-ExecutionPolicy Bypass -Force
+
 $servers = @("sa-build01-v.k2workflow.com", 
              "sa-build02-v.k2workflow.com", 
              "sa-build03-v.k2workflow.com", 
@@ -21,4 +23,4 @@ foreach ($server in $servers)
 }
 
 Write-Host "Done!"
-Read-Host "Press any key to exit."
+Read-Host "Did it work?"

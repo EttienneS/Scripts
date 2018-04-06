@@ -6,10 +6,20 @@ Scripts for machine configuration.
 
 Just pull the script you want and run!
 
-### Prerequisites
+## Prerequisites
 
 Windows Machine
 Powershell 5.0 or greater
+
+## Installation
+
+No install needed but if you want to run the script as a scheduled job at startup you can run:
+
+```
+iex ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/EttienneS/Scripts/master/create-runoncekey.ps1"))
+```
+
+This creates a runonce key on the machine.  The key will tell Windows to download the latest version of [go.ps1](./go.ps1) and execute it.
 
 ## Authors
 
