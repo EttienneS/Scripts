@@ -8,8 +8,8 @@ Just pull the script you want and run!
 
 ## Prerequisites
 
-Windows Machine
-Powershell 5.0 or greater
+* Windows
+* Powershell 5.0 or greater
 
 ## Installation
 
@@ -19,7 +19,7 @@ No install needed but if you want to run the script as a scheduled job at startu
 iex ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/EttienneS/Scripts/master/create-runoncekey.ps1"))
 ```
 
-This creates a runonce key on the machine.  The key will tell Windows to download the latest version of [go.ps1](./go.ps1) and execute it.
+This creates a registry key on the machine that will fire powershell script when anybody logs on.  The key will tell Windows to download the latest version of [go.ps1](./go.ps1) and execute it.
 
 ## Authors
 

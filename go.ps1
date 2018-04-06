@@ -1,4 +1,7 @@
-Set-ExecutionPolicy Bypass -Force
+if ($(Get-ExecutionPolicy) -ne "Unrestricted") 
+{
+    Set-ExecutionPolicy Bypass -Force
+}
 
 $servers = @("sa-build01-v.k2workflow.com", 
              "sa-build02-v.k2workflow.com", 
