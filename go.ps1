@@ -3,7 +3,7 @@ if ($(Get-ExecutionPolicy) -ne "Unrestricted")
     Set-ExecutionPolicy Bypass -Force
 }
 
-function Create-Shortcut
+function Add-Shortcut
 {
     param( [string]$fileLocation, [string]$targetPath )
 
@@ -20,19 +20,19 @@ $servers = @("sa-build01-v.k2workflow.com",
              "sa-build05-v.k2workflow.com", 
              "sa-build06-v.k2workflow.com")
 
-$folder = "$home\Desktop"
+$folder = "$home\Desktop\Links"
 
-if (!(Test-Path $folder)) 
+if (Test-Path $folder) 
 {
-    New-Item $folder
+    Remove-Item $folder
 }   
+
+New-Item $folder
 
 foreach ($server in $servers)
 {
-  Create-Shortcut "$folder\$server.lnk" "\\$server\Builds\"
+    Add-Shortcut "$folder\$server.lnk" "\\$server\Builds\"
 }
 
-Create-Shortcut "$folder\Add App to Sharepoint.lnk" "https://portal.denallix.com/sites/AppCatalog/_layouts/15/addanapp.aspx?Source=https%3A%2F%2Fportal%2Edenallix%2Ecom%2Fsites%2FAppCatalog%2F%5Flayouts%2F15%2Fviewlsts.aspx"
-
+Add-Shortcut "$folder\Add App to Sharepoint.lnk" "https://portal.denallix.com/sites/AppCatalog/_layouts/15/addanapp.aspx?Source=https%3A%2F%2Fportal%2Edenallix%2Ecom%2Fsites%2FAppCatalog%2F%5Flayouts%2F15%2Fviewlsts.aspx"
 Write-Host "Done!"
-Read-Host "Did it work?"
