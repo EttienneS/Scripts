@@ -27,7 +27,7 @@ if (Test-Path $folder)
     Remove-Item $folder
 }   
 
-New-Item $folder
+New-Item $folder -ItemType Directory
 
 foreach ($server in $servers)
 {
