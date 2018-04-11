@@ -17,7 +17,7 @@ $folder = "$home\Desktop\Links\"
 
 if (Test-Path $folder) 
 {
-    Remove-Item $folder -Force
+    Remove-Item $folder -Force -Recurse
 }   
 
 New-Item $folder -ItemType Directory
@@ -29,8 +29,7 @@ $servers = @("\\sa-build01-v.k2workflow.com\builds",
              "\\sa-build05-v.k2workflow.com\builds", 
              "\\sa-build06-v.k2workflow.com\builds",
              "\\scinstall.k2workflow.com\public",
-             "\\sa-nas01-p.k2workflow.com\Appit Production Builds",
-             "\\sa-nas01-p.k2workflow.com\Builds\K2 BlackPearl\Installer\00. Released Builds")
+             "\\sa-nas01-p.k2workflow.com\Appit Production Builds")
 
 foreach ($server in $servers)
 {
