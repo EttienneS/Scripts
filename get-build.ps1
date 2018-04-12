@@ -1,4 +1,26 @@
-Param([switch]$q,[string]$build)
+<#
+.SYNOPSIS
+Retrieves completed successful builds from TFS.
+.DESCRIPTION
+The get-build function queries a local TFS server and gets a json payload of information about the build. 
+.PARAMETER prompt 
+Optional parameter, if set the function will provide an interface for the user to select what build should be used
+.PARAMETER build
+Optional parameter, if the build parameter is set that is used as the definition to query, if not certain defaults are set in the function to query
+.EXAMPLE
+Get latest 'default' build without a prompt
+get-build 
+.EXAMPLE 
+Get latest 'main' build without a prompt
+get-build -build "Main"
+.EXAMPLE 
+Get 'main' build with user input
+get-build -build "Main" -prompt
+.NOTES
+This function requires credentials to be able to connect to TFS, for safety this is not included and is pulled from a separate file.
+#>
+
+Param([switch]$prompt,[string]$build)
 
 $ErrorActionPreference = 'Stop'
 
@@ -34,13 +56,8 @@ foreach ($buildDefinition in $buildDefinitions)
 
 $sortedResults = $results | Sort-Object -Property finishTime -Descending
 
-if ($q)
+if ($prompt)
 {
-    $selectedBuild = $sortedResults[0]
-}
-else 
-{
-    
     Write-Host 
     Write-Host "========================"
     Write-Host 
@@ -77,6 +94,10 @@ else
     until ($typeQuery -lt $($maxBuilds) -and $typeQuery -ge 0)
     
     $selectedBuild = $sortedResults[$typeQuery]
+}
+else 
+{
+    $selectedBuild = $sortedResults[0]
 }
 
 $selectedBuild
