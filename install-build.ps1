@@ -1,5 +1,8 @@
 param( [string]$location )
 
+# fix name, make server name fully qualified
+$serverName = ([uri]$location).Host.ToLower()
+$location = $location.ToLower().Replace($serverName, "$serverName.k2workflow.com")
 Write-Host "Installing build: $location"
 
 if (!$(Test-Path $location))
