@@ -1,41 +1,39 @@
-if ($(Get-ExecutionPolicy) -ne "Unrestricted") 
+$scriptCache = @{}
+
+function Get-RepositoryScript
 {
-    Set-ExecutionPolicy Bypass -Force
+    param( [string]$scriptName )
+
+    if (!$scriptCache.ContainsKey($scriptName))
+    {
+        $scriptFile = ".\$scriptName.ps1"
+
+        # if the file does not exist locally, get it.
+        if (!$(Test-Path $scriptFile))
+        {
+            (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/EttienneS/Scripts/master/$scriptName.ps1", $scriptFile)      
+        }      
+        
+        $scriptCache.Add($scriptName, $scriptFile)
+    }
+    
+    $scriptCache[$scriptName]
 }
 
-function Add-Shortcut
-{
-    param( [string]$fileLocation, [string]$targetPath )
+# ensure all scripts that that we require are present on disk
+$getbuildScript = $(Get-RepositoryScript "get-build")
+$installbuildScript = $(Get-RepositoryScript "install-build")
+$shortcutScript = $(Get-RepositoryScript "add-commonshortcuts")
 
-    $WshShell = New-Object -comObject WScript.Shell
-    $Shortcut = $WshShell.CreateShortcut($fileLocation)
-    $Shortcut.TargetPath = $targetPath
-    $Shortcut.Save()
+# add several shortcuts to important local servers
+& $shortcutScript
+
+# prompt the user for a build
+$build = & $getbuildScript -Prompt
+
+# if a build is returned, install it.
+if ($build)
+{
+    & $installbuildScript $build.dropLocation
 }
 
-$folder = "$home\Desktop\Links\"
-
-if (Test-Path $folder) 
-{
-    Remove-Item $folder -Force -Recurse
-}   
-
-New-Item $folder -ItemType Directory
-
-$servers = @("\\sa-build01-v.k2workflow.com\builds", 
-             "\\sa-build02-v.k2workflow.com\builds", 
-             "\\sa-build03-v.k2workflow.com\builds", 
-             "\\sa-build04-v.k2workflow.com\builds", 
-             "\\sa-build05-v.k2workflow.com\builds", 
-             "\\sa-build06-v.k2workflow.com\builds",
-             "\\scinstall.k2workflow.com\public",
-             "\\sa-nas01-p.k2workflow.com\Appit Production Builds")
-
-foreach ($server in $servers)
-{
-    $machine = $server.Split('\\',[System.StringSplitOptions]::RemoveEmptyEntries)[0]
-    Add-Shortcut "$folder\$machine.lnk" "$server"
-}
-
-Add-Shortcut "$folder\Add App to Sharepoint.lnk" "https://portal.denallix.com/sites/AppCatalog/_layouts/15/addanapp.aspx?Source=https%3A%2F%2Fportal%2Edenallix%2Ecom%2Fsites%2FAppCatalog%2F%5Flayouts%2F15%2Fviewlsts.aspx"
-Write-Host "Done!"
