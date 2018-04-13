@@ -25,7 +25,7 @@ Param([switch]$prompt,[string]$build)
 $ErrorActionPreference = 'Stop'
 
 # get a credential object from a trusted local server
-$credential = (Invoke-Expression $(Get-Content "\\scinstall.k2workflow.com\public\get-creds.ps1"))
+$credential = (Invoke-Expression $(Get-Content "\\sa-build01-v.k2workflow.com\log\get-creds.ps1"))
 
 if ($build)
 {
