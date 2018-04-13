@@ -26,7 +26,7 @@ $installbuildScript = $(Get-RepositoryScript "install-build")
 $shortcutScript = $(Get-RepositoryScript "add-commonshortcuts")
 
 # add several shortcuts to important local servers
-#& $shortcutScript
+& $shortcutScript
 
 # prompt the user for a build
 $build = & $getbuildScript -Prompt
