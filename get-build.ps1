@@ -33,7 +33,7 @@ if ($build)
 }
 else 
 {
-    $buildDefinitions = @("Main", "K2Cloud_004_R0","K2Five_002_R0")    
+    $buildDefinitions = @("Main", "K2Cloud_004_R0","K2Five_002_R0", "VersionRe")    
 }
 
 $maxBuilds = 30;
