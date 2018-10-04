@@ -24,6 +24,7 @@ function Get-RepositoryScript
 $getbuildScript = $(Get-RepositoryScript "get-build")
 $installbuildScript = $(Get-RepositoryScript "install-build")
 $shortcutScript = $(Get-RepositoryScript "add-commonshortcuts")
+$shortcutScript = $(Get-RepositoryScript "create-workspace")
 
 # add several shortcuts to important local servers
 & $shortcutScript
